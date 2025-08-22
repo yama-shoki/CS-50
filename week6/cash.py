@@ -1,5 +1,3 @@
-# TODO
-
 def main():
     # Ask how many cents the customer is owed
     cents = get_cents()
@@ -41,17 +39,14 @@ def calculate_quarters(cents):
 
 # Calculate the number of dimes to give the customer
 def calculate_dimes(cents):
-    # TODO
     return cents // 10
 
 # Calculate the number of nickels to give the customer
 def calculate_nickels(cents):
-    # TODO
     return cents // 5
 
 # Calculate the number of pennies to give the customer
 def calculate_pennies(cents):
-    # TODO
     return cents // 1
 
 

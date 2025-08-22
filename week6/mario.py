@@ -1,4 +1,3 @@
-# TODO
 def main():
 
     while True:
