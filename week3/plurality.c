@@ -66,13 +66,40 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // strcmp()で名前が一致した場合
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            // 一致した候補者の得票数を1増やす
+            candidates[i].votes++;
+            return true;
+        }
+    }
+
+    // どの候補者とも一致しなかった場合
     return false;
 }
 
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    // TODO
-    return;
+    // 一番投票された人を判定
+    int max_votes = 0;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > max_votes)
+        {
+            max_votes = candidates[i].votes;
+        }
+    }
+
+    // 一番投票された人を表示
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == max_votes)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
 }
