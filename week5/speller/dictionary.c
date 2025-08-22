@@ -18,7 +18,7 @@ typedef struct node
 }
 node;
 
-// TODO: Choose number of buckets in hash table
+// Hash Tableのサイズ
 #define N 50000
 
 // Hash table - ポインタの配列、各要素は連結リストの先頭を指す
@@ -31,7 +31,6 @@ unsigned int word_count = 0;
 // 単語が辞書にあるかチェックする関数
 bool check(const char *word)
 {
-     // TODO
     // ①入力された単語を小文字に変換する準備
     char lowercase_word[LENGTH + 1];
     int len = strlen(word);
@@ -72,7 +71,6 @@ bool check(const char *word)
 // 単語を数字（ハッシュ値）に変換する関数
 unsigned int hash(const char *word)
 {
-     // TODO: Improve this hash function
     // ①djb2アルゴリズム用の初期値を設定
     unsigned long hash_value = 5381;
     int c;
@@ -91,7 +89,6 @@ unsigned int hash(const char *word)
 // 辞書ファイルを読み込んでメモリに保存する関数
 bool load(const char *dictionary)
 {
-     // TODO
     // ①辞書ファイルを読み取りモードで開く
     FILE *file = fopen(dictionary, "r");
     if (file == NULL)
@@ -136,7 +133,6 @@ bool load(const char *dictionary)
 // 辞書に入ってる単語数を返す関数
 unsigned int size(void)
 {
-     // TODO
     // ①辞書が読み込まれていない場合は0が返される
     return word_count;
 }
@@ -145,7 +141,6 @@ unsigned int size(void)
 // 使ったメモリを解放する関数
 bool unload(void)
 {
-     // TODO
     // ①ハッシュテーブルの全ての箱（バケット）を見る
     for (int i = 0; i < N; i++)
     {
