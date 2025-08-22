@@ -51,7 +51,6 @@ int get_cents(void)
 
 int calculate_quarters(int cents)
 {
-       // TODO
     printf("user_input: %d\n", cents); // get_cents()できてる。
 
     return cents / 25;
@@ -59,18 +58,15 @@ int calculate_quarters(int cents)
 
 int calculate_dimes(int cents)
 {
-    // TODO
     return cents / 10;
 }
 
 int calculate_nickels(int cents)
 {
-    // TODO
     return cents / 5;
 }
 
 int calculate_pennies(int cents)
 {
-    // TODO
     return cents / 1;
 }
