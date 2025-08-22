@@ -37,30 +37,36 @@ int main(void)
 
 int get_cents(void)
 {
-    // TODO
-    return 0;
+    int user_input;
+
+    do
+    {
+        user_input = get_int("type your payment_amount");
+    }
+
+    while (user_input < 0);
+
+    return user_input;
 }
 
 int calculate_quarters(int cents)
 {
-    // TODO
-    return 0;
+    printf("user_input: %d\n", cents); // get_cents()できてる。
+
+    return cents / 25;
 }
 
 int calculate_dimes(int cents)
 {
-    // TODO
-    return 0;
+    return cents / 10;
 }
 
 int calculate_nickels(int cents)
 {
-    // TODO
-    return 0;
+    return cents / 5;
 }
 
 int calculate_pennies(int cents)
 {
-    // TODO
-    return 0;
+    return cents / 1;
 }
