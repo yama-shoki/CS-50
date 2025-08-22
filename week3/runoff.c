@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -126,42 +127,124 @@ int main(int argc, string argv[])
 
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
-{
+{ 
     // TODO
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            // preferences配列に候補者のインデックスを記録
+            preferences[voter][rank] = i;
+            return true;
+        }
+    }
+
+    // 候補者名が見つからなかった場合
     return false;
 }
 
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    // TODO
-    return;
+     // TODO
+
+    for (int i = 0; i < voter_count; i++)
+    {
+        // 落選した候補者以外を探す
+        for (int j = 0; j < candidate_count; j++)
+        {
+            int candidate_index = preferences[i][j];
+
+            // 候補者がまだ除外されていない場合
+            if (!candidates[candidate_index].eliminated)
+            {
+                // 1票追加
+                candidates[candidate_index].votes++;
+                break;  // この投票者の票は確定、次の投票者へ
+            }
+        }
+    }
 }
 
 // Print the winner of the election, if there is one
 bool print_winner(void)
 {
-    // TODO
+     // TODO
+    // 過半数に必要な票数を計算
+    int majority = voter_count / 2 + 1;
+
+    // 各候補者をチェックして過半数を獲得したかどうか確認
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // 除外されていない候補者で過半数を獲得した場合
+        if (!candidates[i].eliminated && candidates[i].votes >= majority)
+        {
+            printf("%s\n", candidates[i].name);
+            return true;  // 勝者が決定
+        }
+    }
+
+    // まだ勝者が決まっていない
     return false;
 }
 
 // Return the minimum number of votes any remaining candidate has
 int find_min(void)
 {
-    // TODO
-    return 0;
+     // TODO
+    int min_votes = voter_count;  // 最大可能票数で初期化
+
+    // 落選していない候補者の中で投票数が少ない人を探す
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // 除外されていない候補者のみチェック
+        if (!candidates[i].eliminated)
+        {
+            // より少ない得票数が見つかった場合
+            if (candidates[i].votes < min_votes)
+            {
+                min_votes = candidates[i].votes;
+            }
+        }
+    }
+
+    return min_votes;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
 bool is_tie(int min)
 {
-    // TODO
-    return false;
+     // TODO
+    // 残っている候補者が全員同じ得票数かチェック
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // 除外されていない候補者をチェック
+        if (!candidates[i].eliminated)
+        {
+            // 最小得票数と異なる得票数の候補者がいる場合
+            if (candidates[i].votes != min)
+            {
+                return false;  // 同点ではない
+            }
+        }
+    }
+
+    // 全ての残存候補者が同じ得票数
+    return true;  // 同点
 }
 
 // Eliminate the candidate (or candidates) in last place
 void eliminate(int min)
 {
     // TODO
-    return;
+    // 最小得票数(min)の候補者を全て除外
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // 除外されていない候補者で最小得票数の場合
+        if (!candidates[i].eliminated && candidates[i].votes == min)
+        {
+            candidates[i].eliminated = true; 
+        }
+    }
 }
