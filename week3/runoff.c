@@ -128,8 +128,6 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 { 
-    // TODO
-
     for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(candidates[i].name, name) == 0)
@@ -147,8 +145,6 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-     // TODO
-
     for (int i = 0; i < voter_count; i++)
     {
         // 落選した候補者以外を探す
@@ -170,7 +166,6 @@ void tabulate(void)
 // Print the winner of the election, if there is one
 bool print_winner(void)
 {
-     // TODO
     // 過半数に必要な票数を計算
     int majority = voter_count / 2 + 1;
 
@@ -192,7 +187,6 @@ bool print_winner(void)
 // Return the minimum number of votes any remaining candidate has
 int find_min(void)
 {
-     // TODO
     int min_votes = voter_count;  // 最大可能票数で初期化
 
     // 落選していない候補者の中で投票数が少ない人を探す
@@ -215,7 +209,6 @@ int find_min(void)
 // Return true if the election is tied between all candidates, false otherwise
 bool is_tie(int min)
 {
-     // TODO
     // 残っている候補者が全員同じ得票数かチェック
     for (int i = 0; i < candidate_count; i++)
     {
@@ -237,7 +230,6 @@ bool is_tie(int min)
 // Eliminate the candidate (or candidates) in last place
 void eliminate(int min)
 {
-    // TODO
     // 最小得票数(min)の候補者を全て除外
     for (int i = 0; i < candidate_count; i++)
     {

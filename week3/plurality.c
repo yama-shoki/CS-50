@@ -66,8 +66,6 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-     // TODO
-
     for (int i = 0; i < candidate_count; i++)
     {
         // strcmp()で名前が一致した場合
@@ -86,7 +84,6 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-     // TODO
     // 一番投票された人を判定
     int max_votes = 0;
     for (int i = 0; i < candidate_count; i++)
